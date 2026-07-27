@@ -13,6 +13,25 @@ functions, vectors, and data frames work in R, and to be familiar with linear
 regression. It is convenient but *not* necessary to be familiar with Bayesian
 statistics.
 
+## How to use these notes
+
+These notes combine regular prose (like this sentence) with chunks of code. The prose explains what we do and the code shows us how to tell the computer to
+do it. An *explicit* code chunk looks like this:
+
+```{r An explicit code chunk}
+# This is an explicit code chunk
+2 + 2
+```
+
+An explicit code chunk like the one above is there for you to read and run it your own computer. All code chunks in a given section assume you ran the code chunks that came before, so make sure to run all the code in order. A folded code chunk like the one below is there only for reference, so you do not need to read it. Running a chunk like this is optional and the rest of the code will run fine without it. But you still need to run the explicit code chunks that precede a folded chunk.
+
+```{r}
+#| code-fold: true
+#| code-summary: A folded code chunk
+# You do not need to run chunks like this
+7 * 8
+```
+
 ## Creation of this document {.unnumbered}
 
 These notes are published using [Quarto](https://quarto.org); the source code
