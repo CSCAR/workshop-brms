@@ -480,7 +480,7 @@ window.Quarto = {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-post-peng1" class="quarto-float quarto-figure quarto-figure-center anchored" height="3in" data-fig-align="center" width="3.9in">
+<div id="fig-post-peng1" class="quarto-float quarto-figure quarto-figure-center anchored" width="3.9in" data-fig-align="center" height="3in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-post-peng1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/post-dist-peng1.png"><img src="./images/post-dist-peng1.png" class="quarto-figure quarto-figure-center figure-img" style="width:3.9in;height:3in"></a>
@@ -533,6 +533,17 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>priors_weight1 <span class="ot">&lt;-</span> <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">6</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"b"</span>) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">class =</span> <span class="st">"sigma"</span>, <span class="at">lb =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In the code above, <code>normal(0, 1)</code> means “Normal distribution with mean equal to zero and standard deviation equal to 1”. I would like to name these parameters explicitly, but then the code would not run. The reason is that the code <em>inside</em> <code>prior()</code> is not for R but for Stan, so we have to conform to Stan’s syntax. And since writing things like <code>mean = 0</code> inside distributions is illegal in Stan, we cannot write theme here either.</p>
+<p>The <a href="https://mc-stan.org/docs/functions-reference/">Stan Functions Reference</a> shows how to write all the parameters in any distribution it has; the Normal, for example, is <a href="https://mc-stan.org/docs/functions-reference/unbounded_continuous_distributions.html#distribution-statement">here</a>.</p>
+</div>
+</div>
 </div>
 <p>Now we refit our model with these new priors.</p>
 <div class="cell">

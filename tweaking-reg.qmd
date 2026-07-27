@@ -192,6 +192,23 @@ priors_weight1 <- prior(normal(6, 1), class = "Intercept") +
   prior(normal(0, 2), class = "sigma", lb = 0)
 ```
 
+
+::: {.callout-important}
+
+In the code above, `normal(0, 1)` means "Normal distribution with mean equal to
+zero and standard deviation equal to 1". I would like to name these parameters
+explicitly, but then the code would not run. The reason is that the code
+*inside* `prior()` is not for R but for Stan, so we have to conform to Stan's
+syntax. And since writing things like `mean = 0` inside distributions is
+illegal in Stan, we cannot write theme here either.
+
+The [Stan Functions Reference](https://mc-stan.org/docs/functions-reference/)
+shows how to write all the parameters in any distribution it has; the Normal,
+for example, is
+[here](https://mc-stan.org/docs/functions-reference/unbounded_continuous_distributions.html#distribution-statement).
+
+:::
+
 Now we refit our model with these new priors.
 
 ```{r fit weight model with priors}
