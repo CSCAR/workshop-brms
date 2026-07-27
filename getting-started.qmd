@@ -99,9 +99,9 @@ zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115
 
 ### Faster brms with cmdstanr
 
-`brms` interfaces with Stan using a backend. The default backend is `rstan`,
+By default, `brms` interfaces with Stan in the background using `rstan`,
 which does not require any additional installation but is somewhat slow. An
-alternative backend is `cmdstanr`, which needs to be installed separately but
+alternative is to use `cmdstanr`, which needs to be installed separately but
 is much faster than `rstan`. Although tedious, the extra setup is well worth
 the effort.
 
