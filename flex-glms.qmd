@@ -8,7 +8,7 @@ library(ggplot2)
 library(brms)
 library(tidybayes)
 library(bayesplot)
-library(gridExtra)
+library(gridExtra) # For grouping plots; optional
 options(brms.backend = "cmdstanr")
 ```
 
@@ -314,6 +314,7 @@ of children and camper.
 
 ```{r plot conditional effects}
 #| code-fold: true
+#| code-summary: Grouped plots for conditional associations
 #| warning: false
 #| fig-align: center
 #| fig-width: 7
