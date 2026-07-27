@@ -212,7 +212,7 @@ pp_check(object = fit_fisher_zinf, type = "hist", ndraws = 5, binwidth = 1) +
 
 [![Zero-inflated Poisson replicates](./images/fisher-zinf-pred.png){#fig-fisher-zinf-pred fig-align="center" width=5in}](./images/fisher-zinf-pred.png)
 
-We can also inspect the inspect the proportion of visitors with zero fishes by
+We can also inspect the proportion of visitors with zero fishes by
 calling `pp_check()` again. The code is similar to the one above, but we now
 use `type = "stat"` and add a custom function to compute the proportion of
 zeroes in a vector:
