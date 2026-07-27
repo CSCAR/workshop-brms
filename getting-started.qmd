@@ -32,7 +32,8 @@ share code and help with other people even their models differ from ours.
 Making `brms` work in our computer requires some preparation. First, updating
 R to its latest version will help our libraries work better with each other
 and with R itself. Installing `brms` with an older version of R may work, but
-is likely to cause problems later.
+is likely to cause problems later. When we last checked, R version 4.6.1 was
+available
 
 ### C++ toolchain
 
