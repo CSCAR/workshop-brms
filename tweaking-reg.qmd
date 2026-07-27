@@ -360,7 +360,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).
 
 The coefficient for `sexmale` tells us that, if we took two penguins of the
 same species and average weight, we would expect the male penguin to have a
-bill that is between 1.85 and 3.22 mm longer on average than the female
+bill that is between 1.85 and 3.26 mm longer on average than the female
 penguin.
 
 A plot will help us visualize other regression results. First we define the

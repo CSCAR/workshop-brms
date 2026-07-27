@@ -586,7 +586,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-bill-len-assocs" class="quarto-float quarto-figure quarto-figure-center anchored" width="5.5in" data-fig-align="center">
+<div id="fig-bill-len-assocs" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="5.5in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bill-len-assocs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/bill-len-assocs.png"><img src="./images/bill-len-assocs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:5.5in"></a>
@@ -650,7 +650,7 @@ sigma     2.27      0.09     2.10     2.45 1.00     1226      881
 Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
 scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
-<p>The coefficient for <code>sexmale</code> tells us that, if we took two penguins of the same species and average weight, we would expect the male penguin to have a bill that is between 1.85 and 3.22 mm longer on average than the female penguin.</p>
+<p>The coefficient for <code>sexmale</code> tells us that, if we took two penguins of the same species and average weight, we would expect the male penguin to have a bill that is between 1.85 and 3.26 mm longer on average than the female penguin.</p>
 <p>A plot will help us visualize other regression results. First we define the coordinates that we want to see. <code>expand.grid()</code> can build a data frame with the coordinates we want to plot results for. We fill this function with the names and values of the variables we want to get. <code>expand.grid()</code> will then create all possible combinations of the values of these variables.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pred_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
@@ -715,7 +715,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span></span>
 <span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fig-bill-len1-regline" class="quarto-float quarto-figure quarto-figure-center anchored" width="5.5in" data-fig-align="center">
+<div id="fig-bill-len1-regline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="5.5in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bill-len1-regline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/bill-len1-regline.png"><img src="./images/bill-len1-regline.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:5.5in"></a>
