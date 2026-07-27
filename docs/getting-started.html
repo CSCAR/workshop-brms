@@ -414,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installation" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
-<p>Making <code>brms</code> work in our computer requires some preparation. First, updating R to its latest version will help our libraries work better with each other and with R itself. Installing <code>brms</code> with an older version of R may work, but is likely to cause problems later.</p>
+<p>Making <code>brms</code> work in our computer requires some preparation. First, updating R to its latest version will help our libraries work better with each other and with R itself. Installing <code>brms</code> with an older version of R may work, but is likely to cause problems later. When we last checked, R version 4.6.1 was available</p>
 <section id="c-toolchain" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="c-toolchain"><span class="header-section-number">1.2.1</span> C++ toolchain</h3>
 <p><code>brms</code> needs a C++ toolchain to translate R models into a more efficient machinespeak that runs in the background. Setting up this toolchain can take several minutes, but needs to be done only once.</p>
@@ -461,7 +461,7 @@ zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115</code></p
 </section>
 <section id="faster-brms-with-cmdstanr" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="faster-brms-with-cmdstanr"><span class="header-section-number">1.2.3</span> Faster brms with cmdstanr</h3>
-<p><code>brms</code> interfaces with Stan using a backend. The default backend is <code>rstan</code>, which does not require any additional installation but is somewhat slow. An alternative backend is <code>cmdstanr</code>, which needs to be installed separately but is much faster than <code>rstan</code>. Although tedious, the extra setup is well worth the effort.</p>
+<p>By default, <code>brms</code> interfaces with Stan in the background using <code>rstan</code>, which does not require any additional installation but is somewhat slow. An alternative is to use <code>cmdstanr</code>, which needs to be installed separately but is much faster than <code>rstan</code>. Although tedious, the extra setup is well worth the effort.</p>
 <p>To install <code>cmdstanr</code>, first download the package in R:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this in a fresh R session or after restarting your current session</span></span>
