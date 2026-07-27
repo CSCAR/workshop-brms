@@ -2,7 +2,6 @@
 
 ```{r load libraries}
 #| code-summary: "Load libraries"
-#| code-fold: true
 #| output: false
 library(ggplot2)
 library(brms)

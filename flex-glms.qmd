@@ -2,7 +2,6 @@
 
 ```{r Load libraries}
 #| code-summary: "Load libraries"
-#| code-fold: true
 #| output: false
 library(dplyr)
 library(ggplot2)
