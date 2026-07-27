@@ -22,7 +22,7 @@ penguins$body_mass_kg <- penguins$body_mass / 1000
 ```
 
 To start, let us compare the weights of these three groups. The histogram
-below suggests that Gentoo penguins tend to be the heaviest, while
+in @fig-peng-hist suggests that Gentoo penguins tend to be the heaviest, while
 Adelie and Chinstrap tend to have similar weights.
 
 ```{r visualize penguin weights}

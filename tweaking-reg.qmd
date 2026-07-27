@@ -24,7 +24,7 @@ fit_weight1 <- brm(
 ```
 
 We now know that Bayesian models use clever math to draw a bunch of random
-values to describe the parameters of interest. The image below shows some
+values to describe the parameters of interest. @fig-post-peng1 shows some
 colored histograms that represent the random draws---i.e., the posterior
 distributions---that `brms` got to describe each average penguin weight. The
 black dots are the estimated means of these histograms and the black bars
@@ -33,7 +33,7 @@ weights.
 
 ```{r peng1 posteriors}
 #| code-fold: true
-#| title: Posteriors of average weights
+#| code-summary: Posteriors of average weights
 #| fig-align: center
 #| fig-width: 3.9
 #| fig-height: 3

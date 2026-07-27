@@ -464,7 +464,7 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">camper =</span> <span class="fu">as.factor</span>(<span class="fu">if_else</span>(camper <span class="sc">==</span> <span class="dv">0</span>, <span class="at">true =</span> <span class="st">"no"</span>, <span class="at">false =</span> <span class="st">"yes"</span>)))</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fisher_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Note that many visitor groups caught zero fishes (see histogram below). These include zeroes from visitors that did not fish at all and zeroes from visitors that did fish but caught nothing.</p>
+<p>Note that many visitor groups caught zero fishes (see <a href="#fig-fish-hist" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>). These include zeroes from visitors that did not fish at all and zeroes from visitors that did fish but caught nothing.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
@@ -563,7 +563,7 @@ Figure&nbsp;5.2: Model replicates of fishes caught
 </figcaption>
 </figure>
 </div>
-<p>The histograms above suggest that our model is predicting too many visitors with 1, 2, and 3 fishes and too few visitors with zero fishes. This suggests that, unfortunately, our current Poisson regression cannot account for these many zeroes, and in trying to do so it is distorting our inferences.</p>
+<p><a href="#fig-fisher1-pred" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> suggests that our model is predicting too many visitors with one, two, and three fishes and too few visitors with zero fishes. This suggests that, unfortunately, our current Poisson regression cannot account for these many zeroes, and in trying to do so it is distorting our inferences.</p>
 <section id="handling-excess-zeroes" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="handling-excess-zeroes"><span class="header-section-number">5.1</span> Handling excess zeroes</h2>
 <p>Fortunately, <code>brms</code> can expand our model so it directly estimates the proportion of groups that did not fish at all. This expanded model is called “zero-inflated Poisson regression” because it inflates (i.e., adds more) zeroes to the basic Poisson regression. For now, we presume that all groups had the same chance of going fishing. We do not change the default prior for the zero-inflation parameter, so the code to fit this zero-inflated regression is almost the same as before. The only change is that we now set the family to <code>zero_inflated_poisson()</code>.</p>
@@ -579,7 +579,7 @@ Figure&nbsp;5.2: Model replicates of fishes caught
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup =</span> <span class="dv">500</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let’s see if our ingenuous use of zero inflation paid off. First, it seems that our zero-inflated Poisson replicates well the overall pattern of fishes caught (see figure below).</p>
+<p>Let’s see if our ingenuous use of zero inflation paid off. First, it seems that our zero-inflated Poisson replicates well the overall pattern of fishes caught (see <a href="#fig-fisher-zinf-pred" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(<span class="at">object =</span> fit_fisher_zinf, <span class="at">type =</span> <span class="st">"hist"</span>, <span class="at">ndraws =</span> <span class="dv">5</span>, <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>)) <span class="sc">+</span></span>
@@ -676,7 +676,7 @@ Figure&nbsp;5.5: Conditional association of persons
 </figcaption>
 </figure>
 </div>
-<p>The main lesson from this plot is that groups of visitors with more people caught more fish on average, but the difference was not big. With some effort, we can use <code>ggplot</code> to embelish this plot. We do the same for the associations of children and camper.</p>
+<p>The main lesson from <a href="#fig-zinf-person-eff" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> is that groups of visitors with more people caught more fish on average, but the difference was not big. With some effort, we can use <code>ggplot</code> to embelish this plot. We do the same for the associations of children and camper and show them together in <a href="#fig-cond-effs" class="quarto-xref">Figure&nbsp;<span>5.6</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Grouped plots for conditional associations</summary>

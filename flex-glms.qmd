@@ -42,7 +42,7 @@ fisher_df <- fisher_df |>
 summary(fisher_df)
 ```
 
-Note that many visitor groups caught zero fishes (see histogram below). These
+Note that many visitor groups caught zero fishes (see @fig-fish-hist). These
 include zeroes from visitors that did not fish at all and zeroes from visitors
 that did fish but caught nothing.
 
@@ -164,10 +164,10 @@ pp_check(object = fit_fisher1, type = "hist", ndraws = 5, binwidth = 1) +
 
 [![Model replicates of fishes caught](./images/fisher1-pred.png){#fig-fisher1-pred fig-align="center" width=5in}](./images/fisher1-pred.png)
 
-The histograms above suggest that our model is predicting too many visitors
-with 1, 2, and 3 fishes and too few visitors with zero fishes. This suggests
-that, unfortunately, our current Poisson regression cannot account for these
-many zeroes, and in trying to do so it is distorting our inferences.
+@fig-fisher1-pred suggests that our model is predicting too many visitors
+with one, two, and three fishes and too few visitors with zero fishes. This
+suggests that, unfortunately, our current Poisson regression cannot account for
+these many zeroes, and in trying to do so it is distorting our inferences.
 
 ## Handling excess zeroes
 
@@ -195,7 +195,7 @@ fit_fisher_zinf <- brm(
 
 Let's see if our ingenuous use of zero inflation paid off. First, it seems that
 our zero-inflated Poisson replicates well the overall pattern of fishes caught
-(see figure below).
+(see @fig-fisher-zinf-pred).
 
 ```{r check fit of fit_fisher_zinf}
 #| fig-align: center
@@ -307,10 +307,10 @@ conditional_effects(
 
 [![Conditional association of persons](./images/zinf-person-eff.png){#fig-zinf-person-eff fig-align="center" width=3in}](./images/zinf-person-eff.png)
 
-The main lesson from this plot is that groups of visitors with more people
-caught more fish on average, but the difference was not big. With some effort,
-we can use `ggplot` to embelish this plot. We do the same for the associations
-of children and camper.
+The main lesson from @fig-zinf-person-eff is that groups of visitors with more
+people caught more fish on average, but the difference was not big. With some
+effort, we can use `ggplot` to embelish this plot. We do the same for the
+associations of children and camper and show them together in @fig-cond-effs.
 
 ```{r plot conditional effects}
 #| code-fold: true

@@ -460,10 +460,10 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> penguins</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We now know that Bayesian models use clever math to draw a bunch of random values to describe the parameters of interest. The image below shows some colored histograms that represent the random draws—i.e., the posterior distributions—that <code>brms</code> got to describe each average penguin weight. The black dots are the estimated means of these histograms and the black bars around the black dots represent 95% <em>credibility</em> intervals of the average weights.</p>
-<div class="cell" data-layout-align="center" title="Posteriors of average weights">
+<p>We now know that Bayesian models use clever math to draw a bunch of random values to describe the parameters of interest. <a href="#fig-post-peng1" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows some colored histograms that represent the random draws—i.e., the posterior distributions—that <code>brms</code> got to describe each average penguin weight. The black dots are the estimated means of these histograms and the black bars around the black dots represent 95% <em>credibility</em> intervals of the average weights.</p>
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Posteriors of average weights</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a reference grid with one row per species</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>species_grid <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract posterior draws of the mean (epred = expected prediction)</span></span>
@@ -480,7 +480,7 @@ window.Quarto = {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-post-peng1" class="quarto-float quarto-figure quarto-figure-center anchored" height="3in" width="3.9in" data-fig-align="center">
+<div id="fig-post-peng1" class="quarto-float quarto-figure quarto-figure-center anchored" height="3in" data-fig-align="center" width="3.9in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-post-peng1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/post-dist-peng1.png"><img src="./images/post-dist-peng1.png" class="quarto-figure quarto-figure-center figure-img" style="width:3.9in;height:3in"></a>

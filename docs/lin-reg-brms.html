@@ -388,12 +388,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<details class="code-fold">
-<summary>Load libraries</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">brms.backend =</span> <span class="st">"cmdstanr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p><code>brms</code> allows us to add or remove parts of a model as needed, so our code is only as complicated as the model we want to fit. Simple code for simple models; fancy code for fancy models.</p>
 <p>Imagine, for example, that we like penguins and we want to study their weight. R has some clean data about three types of chilly fellows: Adelie, Chinstrap, and Gentoo.</p>
@@ -401,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>body_mass_kg <span class="ot">&lt;-</span> penguins<span class="sc">$</span>body_mass <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>To start, let us compare the weights of these three groups. The histogram below suggests that Gentoo penguins tend to be the heaviest, while Adelie and Chinstrap tend to have similar weights.</p>
+<p>To start, let us compare the weights of these three groups. The histogram in <a href="#fig-peng-hist" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> suggests that Gentoo penguins tend to be the heaviest, while Adelie and Chinstrap tend to have similar weights.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
@@ -416,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-peng-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="300">
+<div id="fig-peng-hist" class="quarto-float quarto-figure quarto-figure-center anchored" width="300" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peng-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/peng-hist.png"><img src="./images/peng-hist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></a>
