@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -58,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,14 +98,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-456160a201148822cb32db6652eaf6f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-631496449bf32ff9b0bb69a6bfd9195d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6828e9469af26be0f5c924ce43dbda6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-631496449bf32ff9b0bb69a6bfd9195d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -401,12 +423,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="what-is-brms" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="what-is-brms"><span class="header-section-number">1.1</span> What is <code>brms</code>?</h2>
-<p><code>brms</code> is an R library for <strong>b</strong>ayesian <strong>r</strong>egression <strong>m</strong>odels using <strong>S</strong>tan:</p>
+<p><code>brms</code> <span class="citation" data-cites="brms2017">(<a href="references.html#ref-brms2017" role="doc-biblioref">Bürkner 2017</a>)</span> is an R library for <strong>b</strong>ayesian <strong>r</strong>egression <strong>m</strong>odels using <strong>S</strong>tan:</p>
 <ul>
 <li>Models: a mathematical description of an observed or hypothesized behavior.</li>
 <li>Regression: a model that relates variables through linear combinations of variables.</li>
 <li>Bayesian: a model that uses Bayes’ theorem to obtain likely values for some quantity of interest.</li>
-<li>Stan: a probabilistic programming language for Bayesian modeling.</li>
+<li>Stan: a probabilistic programming language for Bayesian modeling <span class="citation" data-cites="stan_manual_2026">(<a href="references.html#ref-stan_manual_2026" role="doc-biblioref">Stan Development Team 2026</a>)</span>.</li>
 </ul>
 <p><code>brms</code> can fit many types of models, including: linear, robust linear, count data, survival, response times, ordinal, zero-inflated, hurdle, and even self-defined mixture models. <code>brms</code> can also account for non-linear terms, auto-correlation structures, censoring and truncation, meta-analytic standard errors, and more. And it can combine these models into custom versions for more complicated data.</p>
 <p><code>brms</code> can give good uncertainty estimates for all these models. It also offers thorough diagnostics to check how well a model fits the data, and how reliable the estimated parameters are.</p>
@@ -461,7 +483,7 @@ zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115</code></p
 </section>
 <section id="faster-brms-with-cmdstanr" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="faster-brms-with-cmdstanr"><span class="header-section-number">1.2.3</span> Faster brms with cmdstanr</h3>
-<p>By default, <code>brms</code> interfaces with Stan in the background using <code>rstan</code>, which does not require any additional installation but is somewhat slow. An alternative is to use <code>cmdstanr</code>, which needs to be installed separately but is much faster than <code>rstan</code>. Although tedious, the extra setup is well worth the effort.</p>
+<p>By default, <code>brms</code> interfaces with Stan in the background using <code>rstan</code>, which does not require any additional installation but is somewhat slow. An alternative is to use <code>cmdstanr</code> <span class="citation" data-cites="cmdstanr2025">(<a href="references.html#ref-cmdstanr2025" role="doc-biblioref">Gabry et al. 2025</a>)</span>, which needs to be installed separately but is much faster than <code>rstan</code>. Although tedious, the extra setup is well worth the effort.</p>
 <p>To install <code>cmdstanr</code>, first download the package in R:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this in a fresh R session or after restarting your current session</span></span>
@@ -491,6 +513,17 @@ zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115</code></p
 <p>A successful model run means a successful installation. <code>brms</code> is ready.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-brms2017" class="csl-entry" role="listitem">
+Bürkner, Paul-Christian. 2017. <span>“<span class="nocase">brms</span>: An <span>R</span> Package for <span>Bayesian</span> Multilevel Models Using <span>Stan</span>.”</span> <em>Journal of Statistical Software</em> 80 (1): 1–28. <a href="https://doi.org/10.18637/jss.v080.i01">https://doi.org/10.18637/jss.v080.i01</a>.
+</div>
+<div id="ref-cmdstanr2025" class="csl-entry" role="listitem">
+Gabry, Jonah, Rok Češnovar, Andrew Johnson, and Steve Bronder. 2025. <em>Cmdstanr: R Interface to ’CmdStan’</em>. <a href="https://mc-stan.org/cmdstanr/">https://mc-stan.org/cmdstanr/</a>.
+</div>
+<div id="ref-stan_manual_2026" class="csl-entry" role="listitem">
+Stan Development Team. 2026. <em>Stan Reference Manual, V2.39.0</em>. <a href="https://mc-stan.org">https://mc-stan.org</a>.
+</div>
+</div>
 </section>
 </section>
 

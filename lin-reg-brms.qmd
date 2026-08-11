@@ -13,8 +13,10 @@ only as complicated as the model we want to fit. Simple code for simple
 models; fancy code for fancy models.
 
 Imagine, for example, that we like penguins and we want to study their weight.
-R has some clean data about three types of chilly fellows: Adelie, Chinstrap,
+R has some clean data[^penguins] about three types of chilly fellows: Adelie, Chinstrap,
 and Gentoo.
+
+[^penguins]: Find more information on these data by running `help(penguins)` and referring to @kaye_2025_palmerpenguins.
 
 ```{r load penguin data}
 data(penguins)

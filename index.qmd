@@ -34,7 +34,7 @@ An explicit code chunk like the one above is there for you to read and run it yo
 
 ## Creation of this document {.unnumbered}
 
-These notes are published using [Quarto](https://quarto.org); the source code
+These notes are published using [Quarto](https://quarto.org) [@Allaire_Quarto_2026]; the source code
 is available at <https://github.com/CSCAR/workshop-brms>.
 
 You can switch between light and dark modes using the button in the top left
