@@ -28,3 +28,6 @@ format:
     callout-appearance: simple
 
 bibliography: references.bib
+
+nocite: |
+  @ggplot2_2016, @tidybayes2024, @dplyr_2026, @bayesplot_2025, @gridextra_2026, @rlang_2026, @renv_2026
