@@ -1,0 +1,9 @@
+# Computing environment {.unnumbered}
+
+The information on the computing session and packages used throughout these
+notes is shown below.
+
+```{r computing environment info}
+#| eval: true
+writeLines(readLines("session-info.txt"))
+```
