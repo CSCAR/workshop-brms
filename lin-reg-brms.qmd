@@ -29,6 +29,7 @@ Adelie and Chinstrap tend to have similar weights.
 
 ```{r visualize penguin weights}
 #| code-fold: true
+#| code-summary: Visualize penguin weights
 #| warning: false
 #| fig-align: center
 #| fig-width: 4

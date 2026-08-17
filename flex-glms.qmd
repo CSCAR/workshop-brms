@@ -48,6 +48,7 @@ that did fish but caught nothing.
 
 ```{r histogram of fishes caught}
 #| code-fold: true
+#| code-summary: Show histogram of fishes caught
 #| warning: false
 #| fig-align: center
 #| fig-width: 3.6
@@ -67,13 +68,12 @@ ggplot(data = fisher_df, mapping = aes(x = num_fish)) +
 It is reasonable to think that larger groups were more likely to catch more
 fish. Also, groups with campers likely stayed longer at the park, which would
 give them more time to fish. And children dislike sitting in silence for long
-periods, so groups with more children may have fished less.
-
-These ideas suggest using a model that can associate the average number of
-caught fish to `persons`, `child`, and `camper`. We should also use a model
-that accounts for the fact that the number of fishes caught is a non-negative
-integer. A Poisson regression is a relatively simple model that can fulfil both
-of these requirements[^poisson-fish].
+periods, so groups with more children may have fished less. These ideas suggest
+using a model that can associate the average number of caught fish to
+`persons`, `child`, and `camper`. We should also use a model that accounts for
+the fact that the number of fishes caught is a non-negative integer. A Poisson
+regression is a relatively simple model that can fulfil both of these
+requirements[^poisson-fish].
 
 [^poisson-fish]: ...and gets extra credit because "poisson" means "fish" in
 french.
@@ -208,7 +208,7 @@ fit_fisher_zinf <- brm(
 )
 ```
 
-Let's see if our ingenuous use of zero inflation paid off. First, it seems that
+Let's see if our clever use of zero inflation paid off. First, it seems that
 our zero-inflated Poisson replicates well the overall pattern of fishes caught
 (see @fig-fisher-zinf-pred).
 

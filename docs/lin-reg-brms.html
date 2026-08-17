@@ -429,7 +429,7 @@ div.csl-indent {
 <p>To start, let us compare the weights of these three groups. The histogram in <a href="#fig-peng-hist" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> suggests that Gentoo penguins tend to be the heaviest, while Adelie and Chinstrap tend to have similar weights.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Visualize penguin weights</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_kg)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"darkorange"</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -441,7 +441,7 @@ div.csl-indent {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-peng-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="300">
+<div id="fig-peng-hist" class="quarto-float quarto-figure quarto-figure-center anchored" width="300" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peng-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/peng-hist.png"><img src="./images/peng-hist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></a>

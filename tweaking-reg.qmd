@@ -112,10 +112,9 @@ suggest that our histograms as a whole are reliable.
 
 We want the effective sample size to be high enough to get stable estimates of
 uncertainty. In practice, this means that the ESS for all parameters should be
-above 400 in most models (see @Vehtari_2021), or at least 100 for special
-parameters in complicated models. Our penguin model above has way more ESS than
-this: the lowest Bulk ESS is 3794 (for the `Intercept`) and the lowest Tail ESS
-is 2698 (for the standard deviation `sigma`).
+above 400 in most models [@Vehtari_2021]. Our penguin model above has way more
+ESS than this: the lowest Bulk ESS is 3794 (for the `Intercept`) and the lowest
+Tail ESS is 2698 (for the standard deviation `sigma`).
 
 Finally, our chain is supposed to get draws for all the relevant values of the
 parameter of interest. However, with complicated models or difficult data,
@@ -133,7 +132,7 @@ differ and R-hat would be higher than 1.
 
 In practice, an R-hat above 1.01 signals convergence problems and, therefore,
 unreliable results; an R-hat below 1.01 means that our chains converged well,
-so our results are reliable (see @Vehtari_2021). Our penguin model shows that
+so our results are reliable [@Vehtari_2021]. Our penguin model shows that
 the R-hat for all parameters is practically 1. C'est magnifique!
 
 ## The missing ingredient
@@ -165,10 +164,8 @@ penguins weigh between 4.5 and 8.5 kg.
 
 This knowledge suggests choosing our priors so that all *average* weights are
 between 4 and 8 kg; and so that most weights are within 1 or 2 kg of their
-averages. We also allow the possibility of abnormally fat or thin penguins by
-using a special prior (see below). Note that Wikipedia was talking about the
-full ranges of weights, not just averages, so our priors are comparatively
-broad.
+averages. Note that Wikipedia was talking about the full ranges of weights,
+not just averages, so our priors are comparatively broad.
 
 One way of defining our model's priors is with the `prior()` function. The
 first, and unnamed, argument in `prior()` is the distribution[^avail-dist] we
@@ -259,6 +256,7 @@ illustrates these associations.
 
 ```{r plot bill length by sex and species}
 #| code-fold: true
+#| code-summary: Plot bill length by sex and species
 #| warning: false
 #| fig-align: center
 #| fig-width: 5.5
@@ -332,14 +330,11 @@ fit_bill_len1 <- brm(
 
 In the code above, the argument `chains` controls how many separate sequences
 of random values we will use. `warmup` controls how many random draws we will
-discard at the beginning. `iter` (short for iterations) controls the
-total number of random draws *per chain*, which includes the warmup. `cores`
-controls the number of mini-brains in our computer that R will occupy. Each
-chain runs in one core, so with four cores we can run four chains
-simultaneously. We never need more cores than chains, and we can not use more
-cores than our computer has available. In practice, ask for at most one core
-less than those available in your computer; the extra core will run everything
-else (e.g., internet browsers or Excel).
+discard at the beginning. `iter` (short for iterations) controls the number of random draws *per chain*, which includes the warmup. `cores` controls the
+number of mini-brains in our computer that R will take. Each chain runs in one
+core, so we never need more cores than chains. In practice, ask for at most
+one core less than those available in your computer; the extra core will run
+everything else (e.g., internet browsers or Excel).
 
 The regression summary below shows that the effective sample sizes for
 all parameters are well above the minimum threshold of 400, and all R-hats are

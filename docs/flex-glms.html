@@ -476,7 +476,7 @@ window.Quarto = {
 <p>Note that many visitor groups caught zero fishes (see <a href="#fig-fish-hist" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>). These include zeroes from visitors that did not fish at all and zeroes from visitors that did fish but caught nothing.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show histogram of fishes caught</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fisher_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> num_fish)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"navyblue"</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -487,7 +487,7 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-fish-hist" class="quarto-float quarto-figure quarto-figure-center anchored" width="3.6in" data-fig-align="center">
+<div id="fig-fish-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="3.6in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fish-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/fish-hist.png"><img src="./images/fish-hist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:3.6in"></a>
@@ -497,8 +497,7 @@ Figure&nbsp;5.1: A histogram of fish caught
 </figcaption>
 </figure>
 </div>
-<p>It is reasonable to think that larger groups were more likely to catch more fish. Also, groups with campers likely stayed longer at the park, which would give them more time to fish. And children dislike sitting in silence for long periods, so groups with more children may have fished less.</p>
-<p>These ideas suggest using a model that can associate the average number of caught fish to <code>persons</code>, <code>child</code>, and <code>camper</code>. We should also use a model that accounts for the fact that the number of fishes caught is a non-negative integer. A Poisson regression is a relatively simple model that can fulfil both of these requirements<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>It is reasonable to think that larger groups were more likely to catch more fish. Also, groups with campers likely stayed longer at the park, which would give them more time to fish. And children dislike sitting in silence for long periods, so groups with more children may have fished less. These ideas suggest using a model that can associate the average number of caught fish to <code>persons</code>, <code>child</code>, and <code>camper</code>. We should also use a model that accounts for the fact that the number of fishes caught is a non-negative integer. A Poisson regression is a relatively simple model that can fulfil both of these requirements<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <p>An alternative to priors based on previous measurements is to use priors that discard implausible values but still allow wide ranges for all coefficients<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. One common approach for this is to standardize all numerical dependent variables and assign them all a Normal distribution with mean zero and standard deviation 1. An equivalent approach is to rescale this distribution to match the scale of its corresponding variable.</p>
 <p>The code to prepare these rescaled priors is below. Note that we have to use the alternative function <code>prior_string()</code>, which uses strings instead of formulas in its arguments. This allows us to compute the rescaled parameters without having to write them manually.</p>
 <div class="cell">
@@ -562,7 +561,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fig-fisher1-pred" class="quarto-float quarto-figure quarto-figure-center anchored" width="5in" data-fig-align="center">
+<div id="fig-fisher1-pred" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="5in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fisher1-pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/fisher1-pred.png"><img src="./images/fisher1-pred.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:5in"></a>
@@ -588,7 +587,7 @@ Figure&nbsp;5.2: Model replicates of fishes caught
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup =</span> <span class="dv">500</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let’s see if our ingenuous use of zero inflation paid off. First, it seems that our zero-inflated Poisson replicates well the overall pattern of fishes caught (see <a href="#fig-fisher-zinf-pred" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>).</p>
+<p>Let’s see if our clever use of zero inflation paid off. First, it seems that our zero-inflated Poisson replicates well the overall pattern of fishes caught (see <a href="#fig-fisher-zinf-pred" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(<span class="at">object =</span> fit_fisher_zinf, <span class="at">type =</span> <span class="st">"hist"</span>, <span class="at">ndraws =</span> <span class="dv">5</span>, <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>)) <span class="sc">+</span></span>
@@ -598,7 +597,7 @@ Figure&nbsp;5.2: Model replicates of fishes caught
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fig-fisher-zinf-pred" class="quarto-float quarto-figure quarto-figure-center anchored" width="5in" data-fig-align="center">
+<div id="fig-fisher-zinf-pred" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="5in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fisher-zinf-pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/fisher-zinf-pred.png"><img src="./images/fisher-zinf-pred.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:5in"></a>
@@ -626,7 +625,7 @@ Figure&nbsp;5.3: Zero-inflated Poisson replicates
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fig-fisher-zinf-zeroes" class="quarto-float quarto-figure quarto-figure-center anchored" width="3.6in" data-fig-align="center">
+<div id="fig-fisher-zinf-zeroes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="3.6in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fisher-zinf-zeroes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/fisher-zinf-zeroes.png"><img src="./images/fisher-zinf-zeroes.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:3.6in"></a>
@@ -675,7 +674,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fl">0.8</span> <span class="co"># For 80% credibility intervals</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fig-zinf-person-eff" class="quarto-float quarto-figure quarto-figure-center anchored" width="3in" data-fig-align="center">
+<div id="fig-zinf-person-eff" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="3in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-zinf-person-eff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/zinf-person-eff.png"><img src="./images/zinf-person-eff.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:3in"></a>
@@ -744,7 +743,7 @@ Figure&nbsp;5.5: Conditional association of persons
 <span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fig-cond-effs" class="quarto-float quarto-figure quarto-figure-center anchored" width="7in" data-fig-align="center">
+<div id="fig-cond-effs" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="7in">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cond-effs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="./images/cond-effs.png"><img src="./images/cond-effs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></a>
