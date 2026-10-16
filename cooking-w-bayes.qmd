@@ -42,7 +42,7 @@ record the numbers you observe each time. With enough rolls, you will get a
 good description of how often each possible number appears with these dice.
 
 As with the dice, we can learn about $\theta$ by repeatedly drawing random
-values to get a sample. If we follow the probabilities given by the product in
+values to get a sample. If we follow the probabilities given by the numerator in
 Bayes' Theorem, the random values we draw will eventually describe the
 plausible values for $\theta$, i.e., its posterior distribution. With this
 strategy, we can ignore the fancy constant because it does not change the

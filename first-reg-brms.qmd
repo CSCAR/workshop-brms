@@ -117,10 +117,9 @@ Based on these results, we estimate that both Adelie and Chinstrap weight
 around 3.7 kilograms on average, while Gentoo penguins weight around 5.08
 kilograms on average. We also estimate that the standard deviation of the
 weight of all penguin groups, `sigma`, is 0.46, which means that most penguins'
-weights lie within 0.92 kilograms of their group average.
+weights lie within 0.92 kilograms of their species average.
 
 The summaries we just saw suffice to understand the elementary aspects of many
 regression models. But the power and versatility of `brms` will be easier to
-wield if we devote a little time to learning the "bayesics" of Bayesian
-statistics and computation. We just learned how to turn on the oven. A bit more
-effort and we can learn to control the heat.
+wield if we devote a little time to learning a bit of Bayesian statistics and
+computation. We just learned how to turn on the oven. A bit more effort and we can learn to control the heat.
