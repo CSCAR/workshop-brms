@@ -72,6 +72,7 @@ better to set it up in advance.
 With our C++ toolchain ready, we can return to R and install `brms`.
 
 ```{r install brms}
+#| eval: false
 install.packages("brms")
 ```
 
@@ -108,6 +109,7 @@ is well worth the effort.
 To install `cmdstanr`, first download the package in R:
 
 ```{r run cmdstanr installation}
+#| eval: false
 # Run this in a fresh R session or after restarting your current session
 install.packages(
     pkgs = "cmdstanr",
@@ -131,6 +133,7 @@ Ignore all the weird messages that will appear; we care only about warnings
 and errors.
 
 ```{r install cmdstan}
+#| eval: false
 install_cmdstan(cores = 2)
 ```
 
