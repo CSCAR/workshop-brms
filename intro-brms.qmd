@@ -6,17 +6,19 @@
 using **S**tan:
 
 + Models: a mathematical description of an observed or hypothesized behavior.
-+ Regression: a model that relates variables through linear combinations of
++ Regression: a model that describes parameters as linear combinations of
 variables.
 + Bayesian: a model that uses Bayes' theorem to obtain likely values for some
 quantity of interest.
-+ Stan: a probabilistic programming language for Bayesian modeling [@stan_manual_2026].
++ Stan: a probabilistic programming language for Bayesian modeling
+[@stan_manual_2026].
 
-`brms` can fit many types of models, including: linear, robust linear, count
+`brms` can fit many types of models, including linear, robust linear, count
 data, survival, response times, ordinal, zero-inflated, hurdle, and even
 self-defined mixture models. `brms` can also account for non-linear terms,
 auto-correlation structures, censoring and truncation, meta-analytic standard
-errors, and more. And it can combine these models into custom versions for more complicated data.
+errors, and more. And it can combine these models into custom versions for more
+complicated data.
 
 `brms` can give good uncertainty estimates for all these models. It also
 offers thorough diagnostics to check how well a model fits the data, and how
@@ -25,7 +27,7 @@ reliable the estimated parameters are.
 Housing all these features in a single modeling library affords us a
 consistent syntax and an ecosystem of libraries that work automatically with
 most models. So, with `brms` we can learn new models incrementally and we can
-share code and help with other people even their models differ from ours.
+share code and tips with other people even their models differ from ours.
 
 ## Installation
 
@@ -50,7 +52,7 @@ keeping all the default choices.
 
 **In macOS**, the C++ toolchain comes with *Xcode Command Line Tools*. First,
 go to the Terminal (open `Finder > Applications > Terminal`) and check
-if Xcode this is already installed with
+if Xcode is already installed with
 ```
 xcode-select --version
 ```
@@ -80,8 +82,11 @@ Run the commands below to verify that `brms` works properly.
 
 ```{r test brms installation}
 library(brms)
-fit1 <- brm(count ~ zAge + zBase * Trt + (1|patient),
-            data = epilepsy, family = poisson())
+fit1 <- brm(
+  count ~ zAge + zBase * Trt + (1 | patient),
+  data = epilepsy,
+  family = poisson()
+)
 summary(fit1)
 ```
 
@@ -100,11 +105,11 @@ zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115
 
 ### Faster brms with cmdstanr
 
-By default, `brms` interfaces with Stan in the background using `rstan`,
-which does not require any additional installation but is somewhat slow. An
-alternative is to use `cmdstanr` [@cmdstanr2025], which needs to be installed
-separately but is much faster than `rstan`. Although tedious, the extra setup
-is well worth the effort.
+By default, `brms` interfaces with Stan in the background using `rstan`
+[@rstan_2026], which does not require any additional installation but is
+somewhat slow. An alternative is to use `cmdstanr` [@cmdstanr2025], which needs
+to be installed separately but is much faster than `rstan`. Although tedious,
+the extra setup is well worth the effort.
 
 To install `cmdstanr`, first download the package in R:
 
@@ -142,8 +147,11 @@ Finally, verify that `brms` can call `cmdstanr`:
 ```{r test brms with cmdstanr}
 library(brms)
 options(brms.backend = 'cmdstanr') # This forces brms to use cmdstanr
-fit1 <- brm(count ~ zAge + zBase * Trt + (1|patient),
-            data = epilepsy, family = poisson())
+fit1 <- brm(
+  count ~ zAge + zBase * Trt + (1 | patient),
+  data = epilepsy,
+  family = poisson()
+)
 summary(fit1)
 ```
 
