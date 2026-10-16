@@ -23,7 +23,13 @@ do it. An *explicit* code chunk looks like this:
 2 + 2
 ```
 
-An explicit code chunk like the one above is there for you to read and run it your own computer. All code chunks in a given section assume you ran the code chunks that came before, so make sure to run all the code in order. A folded code chunk like the one below is there only for reference, so you do not need to read it. Running a chunk like this is optional and the rest of the code will run fine without it. But you still need to run the explicit code chunks that precede a folded chunk.
+An explicit code chunk like the one above is there for you to read and run it
+in your own computer. All code chunks in a given section assume you ran the
+chunks that came before, so make sure to run all the code in order. A folded
+code chunk like the one below is there only for reference, so you do not need
+to read it. Running a chunk like this is optional and the rest of the code will
+run fine without it. But you still need to run the explicit code chunks that
+precede a folded chunk.
 
 ```{r}
 #| code-fold: true
@@ -34,8 +40,9 @@ An explicit code chunk like the one above is there for you to read and run it yo
 
 ## Creation of this document {.unnumbered}
 
-These notes are published using [Quarto](https://quarto.org) [@Allaire_Quarto_2026]; the source code
-is available at <https://github.com/CSCAR/workshop-brms>.
+These notes are published using [Quarto](https://quarto.org)
+[@Allaire_Quarto_2026]; the source code is available at
+<https://github.com/CSCAR/workshop-brms>.
 
 You can switch between light and dark modes using the button in the top left
 corner of the screen. Dark mode reverses the colors of the images to reduce
