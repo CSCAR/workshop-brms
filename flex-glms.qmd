@@ -12,9 +12,9 @@ library(gridExtra) # For grouping plots; optional
 options(brms.backend = "cmdstanr")
 ```
 
-Now that we can write `brms` models and read their output, we can brave more
-complicated models[^orig-pois]. Let us consider some data from park visitors,
-gathered by UCLA. In their words:
+Now that we can write `brms`'s syntax and read it output, we can brave more
+complicated models. Let us consider some data from park visitors, gathered by
+UCLA[^orig-pois]. In their words:
 
 > The state wildlife biologists want to model how many fish are
 being caught by fishermen at a state park. Visitors are asked whether or not
@@ -179,10 +179,10 @@ pp_check(object = fit_fisher1, type = "hist", ndraws = 5, binwidth = 1) +
 
 [![Model replicates of fishes caught](./images/fisher1-pred.png){#fig-fisher1-pred fig-align="center" width=5in}](./images/fisher1-pred.png)
 
-@fig-fisher1-pred suggests that our model is predicting too many visitors
-with one, two, and three fishes and too few visitors with zero fishes. This
-suggests that, unfortunately, our current Poisson regression cannot account for
-these many zeroes, and in trying to do so it is distorting our inferences.
+@fig-fisher1-pred shows that our model is predicting too many visitors with one,
+two, and three fishes and too few visitors with zero fishes. This suggests that,
+unfortunately, our current Poisson regression cannot account for these many
+zeroes, and in trying to do so it is distorting our inferences.
 
 ## Handling excess zeroes
 
