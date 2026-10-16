@@ -68,7 +68,7 @@ fish_hist
 #| include: false
 #| eval: false
 ggsave(
-  filename = "images/fish-hist1.png",
+  filename = "images/fish-hist.png",
   plot = fish_hist,
   width = 3.6,
   height = 3
@@ -200,7 +200,7 @@ fisher1_pred
 #| eval: false
 ggsave(
   filename = "images/fisher1-pred.png",
-  plot = fisher1_pred
+  plot = fisher1_pred,
   width = 5,
   height = 4
 )
@@ -263,9 +263,9 @@ fisher_zinf_pred
 ```{r save fisher-zinf-pred}
 #| include: false
 #| eval: false
-fisher_zinf_pred <- ggsave(
+ggsave(
   filename = "images/fisher-zinf-pred.png",
-  plot = fisher_zinf_pred
+  plot = fisher_zinf_pred,
   width = 5,
   height = 4
 )
@@ -436,7 +436,7 @@ cond_effs <- grid.arrange(
 cond_effs
 ```
 
-```{r save fish histogram}
+```{r save cond-effs}
 #| include: false
 #| eval: false
 ggsave(
