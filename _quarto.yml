@@ -12,8 +12,8 @@ book:
     title: "A tutorial for brms"
   chapters:
     - index.qmd
-    - getting-started.qmd
-    - lin-reg-brms.qmd
+    - intro-brms.qmd
+    - first-reg-brms.qmd
     - cooking-w-bayes.qmd
     - tweaking-reg.qmd
     - flex-glms.qmd
