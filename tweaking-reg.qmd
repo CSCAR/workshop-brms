@@ -24,7 +24,7 @@ fit_weight1 <- brm(
 ```
 
 We now know that Bayesian models use clever math to draw a bunch of random
-values to describe the parameters of interest. @fig-post-peng1 shows some
+values that describe the parameters of interest. @fig-post-peng1 shows some
 colored histograms that represent the random draws---i.e., the posterior
 distributions---that `brms` got to describe each average penguin weight. The
 black dots are the estimated means of these histograms and the black bars
@@ -80,7 +80,8 @@ and Tail_ESS are effective sample size measures, and Rhat is the potential
 scale reduction factor on split chains (at convergence, Rhat = 1).
 ```
 
-These numerical summaries have enriched their meaning: they capture different parts of the histograms in @fig-post-peng1. `Estimate` shows their mean
+These numerical summaries have enriched their meaning: they capture different
+parts of the histograms in @fig-post-peng1. `Estimate` shows their mean
 (painted as black dots), `Est.Error` shows their standard errors, and
 l-95% CI and u-95% CI show their 5% and 95% quantiles of the histograms
 (painted as black bars).
@@ -93,22 +94,21 @@ models we need.
 The random draws we get form a sequence or **chain**. Also, to get each random
 draw, `brms` goes through a computational process that it calls an
 **iteration**. The first few draws are usually too inaccurate to be useful, so
-we have to let the chain discard some **warmup** iterations.
-
-Our penguin regression above used four chains, each of which had 2000
-iterations, including warmup. Combining the post-warmup draws from all four
-chains gives us 4000 useful draws in total.
+we have to let the chain do some **warmup** iterations. Our penguin regression
+above used four chains, each of which had 2000 iterations, including warmup.
+Combining the post-warmup draws from all four chains gives us 4000 useful draws
+in total.
 
 For complicated mathematical reasons, draws from a given chain tend to be
 related to each other, which makes them less informative than if they were
-independent. The **effective sample size (ESS)** measures the equivalent
-number of random draws we would have if our iterations were independent. A
-higher ESS means more reliable estimates. **Bulk ESS** measures the
+independent. For a given number of draws in a model, the
+**effective sample size (ESS)** reports the equivalent number of independent
+draws. A higher ESS means more reliable estimates. **Bulk ESS** measures the
 reliability of the center (or bulk) of our posterior distribution, e.g., the
-number we see in the `Estimate` column. **Tail ESS** measures the reliability
-of the tails of the posterior distribution, e.g., the numbers in columns
-`l-95% CI` and `u-95% CI`. So, having both a high Bulk ESS and high Tail ESS
-suggest that our histograms as a whole are reliable.
+number we see in the `Estimate` column. **Tail ESS** measures the reliability of
+the tails of the posterior distribution, e.g., the numbers in columns `l-95% CI`
+and `u-95% CI`. So, having both a high Bulk ESS and high Tail ESS suggest that
+our histograms as a whole are reliable.
 
 We want the effective sample size to be high enough to get stable estimates of
 uncertainty. In practice, this means that the ESS for all parameters should be
@@ -125,10 +125,12 @@ random values. In practice, we should use at least four chains when fitting any
 model.
 
 **R-hat** (often styled $\hat{R}$) diagnoses convergence by comparing the
-variance of numbers within the chains to the variance across different chains.
-If the chains converged, these two variances should be roughly the same, so
-R-hat would equal 1. If the chains did not converge, the variances would
-differ and R-hat would be higher than 1.
+variance of numbers within the chains to the variance between different chains.
+Roughly put, R-hat is equal to
+$\sqrt{1 + \text{variance_between} / \text{variance_within}}$. If the chains
+converge, the variance between chains is zero, so R-hat would equal 1. If the
+chains did not converge, the variances would differ and R-hat would be higher
+than 1.
 
 In practice, an R-hat above 1.01 signals convergence problems and, therefore,
 unreliable results; an R-hat below 1.01 means that our chains converged well,
@@ -160,12 +162,11 @@ that Adelie penguins weigh between 3.8 and 8.2 kg;
 [that](https://en.wikipedia.org/wiki/Chinstrap_penguin#Description)
 Chinstrap penguins weigh between 3.2 and 5.3 kg;
 [and that](https://en.wikipedia.org/wiki/Gentoo_penguin#Description) Gentoo
-penguins weigh between 4.5 and 8.5 kg.
-
-This knowledge suggests choosing our priors so that all *average* weights are
-between 4 and 8 kg; and so that most weights are within 1 or 2 kg of their
-averages. Note that Wikipedia was talking about the full ranges of weights,
-not just averages, so our priors are comparatively broad.
+penguins weigh between 4.5 and 8.5 kg. Based on this, we can choose our priors
+so that all *average* weights are between 4 and 8 kg; and so that most weights
+are within 1 or 2 kg of their averages. Note that Wikipedia was talking about
+the full ranges of weights, not just averages, so our priors are comparatively
+broad.
 
 One way of defining our model's priors is with the `prior()` function. The
 first, and unnamed, argument in `prior()` is the distribution[^avail-dist] we
@@ -193,11 +194,11 @@ priors_weight1 <- prior(normal(6, 1), class = "Intercept") +
 ::: {.callout-important}
 
 In the code above, `normal(0, 1)` means "Normal distribution with mean equal to
-zero and standard deviation equal to 1". I would like to name these parameters
+$0$ and standard deviation equal to $1$". I would like to name these parameters
 explicitly, but then the code would not run. The reason is that the code
 *inside* `prior()` is not for R but for Stan, so we have to conform to Stan's
-syntax. And since writing things like `mean = 0` inside distributions is
-illegal in Stan, we cannot write theme here either.
+syntax. And since Stan forbids things like `mean = 0` inside distributions, we
+cannot write theme here either.
 
 The [Stan Functions Reference](https://mc-stan.org/docs/functions-reference/)
 shows how to write all the parameters in any distribution it has; the Normal,
@@ -242,8 +243,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).
 
 Our new results are very similar to the ones we had obtained using the default
 priors. In part because our data have enough evidence to avoid elephantine
-inferences. And in part because our Wikipedia-based priors overlapped with our
-data.
+inferences. And in part because our Wikipedia-based priors were still broad and
+overlapped with our data.
 
 ## Turning knobs and pushing buttons
 
@@ -330,11 +331,12 @@ fit_bill_len1 <- brm(
 
 In the code above, the argument `chains` controls how many separate sequences
 of random values we will use. `warmup` controls how many random draws we will
-discard at the beginning. `iter` (short for iterations) controls the number of random draws *per chain*, which includes the warmup. `cores` controls the
-number of mini-brains in our computer that R will take. Each chain runs in one
-core, so we never need more cores than chains. In practice, ask for at most
-one core less than those available in your computer; the extra core will run
-everything else (e.g., internet browsers or Excel).
+discard at the beginning. `iter` (short for iterations) controls the number of
+random draws *per chain*, which includes the warmup. `cores` controls the number
+of mini-brains in our computer that R will take. Each chain runs in one core, so
+we never need more cores than chains. In practice, ask for at most one core less
+than those available in your computer; the extra core will run everything else
+(e.g., internet browsers or Excel).
 
 The regression summary below shows that the effective sample sizes for
 all parameters are well above the minimum threshold of 400, and all R-hats are
@@ -414,24 +416,24 @@ is blissfully simple:
 ```{r}
 posterior_lines <- add_epred_draws(
   newdata = pred_grid,
-  object = fit_bill_len1
+  object = fit_bill_len1,
+  ndraws = 600
 )
+head(posterior_lines, 5)
 ```
 
 We can read the code above as "for each point of interest in `pred_grid`, we
-want `ndraws` draws from `fit_bill_len1`". Omitting `ndraws` will ask
+want $600$ draws from `fit_bill_len1`". Omitting `ndraws` will ask
 `add_epred_draws()` to use all available draws in `fit_bill_len1`. Using more
 draws increases the precision of the plots we paint, but also the time it
 takes to draw them. 600 draws are usually precise and fast enough to plot and
-summarize results; we can use all the draws only when presenting the final
-results of an analysis.
+summarize results; we can use more draws when presenting the final results.
 
 Finally, we can combine `ggplot` with the `tidybayes` library to create a plot.
 `stat_lineribbon()` takes all the regression draws we saved in
 `posterior_lines` and, with some trickery, transforms them into a smooth plot.
 The thick lines represent the means and the shaded regions represent the
 credibility intervals of the average bill length at each weight.
-
 
 ```{r plot results from fit_bill_len1}
 #| warning: false
@@ -442,12 +444,7 @@ credibility intervals of the average bill length at each weight.
 bm_kg_mean <- mean(penguins$body_mass_kg, na.rm = TRUE)
 ggplot(
   data = posterior_lines,
-  mapping = aes(
-    x = bm_kg_ctr + bm_kg_mean,
-    y = .epred,
-    color = sex,
-    fill = sex
-  )
+  mapping = aes(x = bm_kg_ctr + bm_kg_mean, y = .epred, color = sex, fill = sex)
 ) +
   stat_lineribbon(
     point_interval = "mean_qi",
@@ -467,7 +464,7 @@ ggplot(
   # OPTIONAL: Add observed data to plots
   geom_point(
     data = penguins,
-    aes(x = bm_kg_ctr + bm_kg_mean, y = bill_len),
+    mapping = aes(x = bm_kg_ctr + bm_kg_mean, y = bill_len),
     alpha = 0.5,
     size = 1
   )
