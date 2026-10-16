@@ -56,7 +56,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./tweaking-reg.html" rel="next">
-<link href="./lin-reg-brms.html" rel="prev">
+<link href="./first-reg-brms.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -338,13 +338,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro-brms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing <code>brms</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lin-reg-brms.html" class="sidebar-item-text sidebar-link">
+  <a href="./first-reg-brms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></span></a>
   </div>
 </li>
@@ -426,7 +426,7 @@ window.Quarto = {
 \]</span></p>
 <p>Our first impulse may be to do the math explicitly to get a specific formula. Unfortunately, the fancy constant is an ugly integral that is impossible to compute in all but the simplest models. We could also try to approximate this formula with another, simpler formula that is easier to compute. This works sometimes but is often difficult and inaccurate.</p>
 <p>Figuring out how to actually use Bayes’ theorem is not even remotely obvious, but we can gain some intuition with a short fable. Imagine that your good friend gambling Bob gifts you his favourite pair of loaded dice, but leaves before telling you how they work. How could you find out which numbers are the good ones? A simple solution is to roll these dice a whole lot of times and record the numbers you observe each time. With enough rolls, you will get a good description of how often each possible number appears with these dice.</p>
-<p>As with the dice, we can learn about <span class="math inline">\(\theta\)</span> by repeatedly drawing random values to get a sample. If we follow the probabilities given by the product in Bayes’ Theorem, the random values we draw will eventually describe the plausible values for <span class="math inline">\(\theta\)</span>, i.e., its posterior distribution. With this strategy, we can ignore the fancy constant because it does not change the <em>relative</em> probabilities of the values we sample.</p>
+<p>As with the dice, we can learn about <span class="math inline">\(\theta\)</span> by repeatedly drawing random values to get a sample. If we follow the probabilities given by the numerator in Bayes’ Theorem, the random values we draw will eventually describe the plausible values for <span class="math inline">\(\theta\)</span>, i.e., its posterior distribution. With this strategy, we can ignore the fancy constant because it does not change the <em>relative</em> probabilities of the values we sample.</p>
 <p>Thus, we can view Bayesian computation as rolling some metaphorical dice and then using Bayes’ theorem to transform these rolls into values that describe the plausible range of the parameters (or other quantities) we want to study.</p>
 <p>So far we know the ingredients and the recipe to cook our dish. Now all we need is a few details on how to use the knobs and buttons on our oven (<code>brms</code>).</p>
 
@@ -871,7 +871,7 @@ Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaugh
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lin-reg-brms.html" class="pagination-link" aria-label="A first regression in brms">
+      <a href="./first-reg-brms.html" class="pagination-link" aria-label="A first regression in brms">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></span>
       </a>          
   </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; A first regression in brms – A tutorial for brms</title>
+<title>1&nbsp; Introducing brms – A tutorial for brms</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -90,8 +90,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./cooking-w-bayes.html" rel="next">
-<link href="./getting-started.html" rel="prev">
+<link href="./first-reg-brms.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -308,7 +308,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lin-reg-brms.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro-brms.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing <code>brms</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -344,13 +344,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro-brms.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing <code>brms</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lin-reg-brms.html" class="sidebar-item-text sidebar-link active">
+  <a href="./first-reg-brms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></span></a>
   </div>
 </li>
@@ -389,8 +389,20 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-brms" id="toc-what-is-brms" class="nav-link active" data-scroll-target="#what-is-brms"><span class="header-section-number">1.1</span> What is <code>brms</code>?</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.2</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#c-toolchain" id="toc-c-toolchain" class="nav-link" data-scroll-target="#c-toolchain"><span class="header-section-number">1.2.1</span> C++ toolchain</a></li>
+  <li><a href="#default-version-of-brms" id="toc-default-version-of-brms" class="nav-link" data-scroll-target="#default-version-of-brms"><span class="header-section-number">1.2.2</span> Default version of brms</a></li>
+  <li><a href="#faster-brms-with-cmdstanr" id="toc-faster-brms-with-cmdstanr" class="nav-link" data-scroll-target="#faster-brms-with-cmdstanr"><span class="header-section-number">1.2.3</span> Faster brms with cmdstanr</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -398,7 +410,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing <code>brms</code></span></h1>
 </div>
 
 
@@ -415,83 +427,113 @@ div.csl-indent {
 </header>
 
 
+<section id="what-is-brms" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-brms"><span class="header-section-number">1.1</span> What is <code>brms</code>?</h2>
+<p><code>brms</code> <span class="citation" data-cites="brms2017">(<a href="references.html#ref-brms2017" role="doc-biblioref">Bürkner 2017</a>)</span> is an R library for <strong>b</strong>ayesian <strong>r</strong>egression <strong>m</strong>odels using <strong>S</strong>tan:</p>
+<ul>
+<li>Models: a mathematical description of an observed or hypothesized behavior.</li>
+<li>Regression: a model that describes parameters as linear combinations of variables.</li>
+<li>Bayesian: a model that uses Bayes’ theorem to obtain likely values for some quantity of interest.</li>
+<li>Stan: a probabilistic programming language for Bayesian modeling <span class="citation" data-cites="stan_manual_2026">(<a href="references.html#ref-stan_manual_2026" role="doc-biblioref">Stan Development Team 2026b</a>)</span>.</li>
+</ul>
+<p><code>brms</code> can fit many types of models, including linear, robust linear, count data, survival, response times, ordinal, zero-inflated, hurdle, and even self-defined mixture models. <code>brms</code> can also account for non-linear terms, auto-correlation structures, censoring and truncation, meta-analytic standard errors, and more. And it can combine these models into custom versions for more complicated data.</p>
+<p><code>brms</code> can give good uncertainty estimates for all these models. It also offers thorough diagnostics to check how well a model fits the data, and how reliable the estimated parameters are.</p>
+<p>Housing all these features in a single modeling library affords us a consistent syntax and an ecosystem of libraries that work automatically with most models. So, with <code>brms</code> we can learn new models incrementally and we can share code and tips with other people even their models differ from ours.</p>
+</section>
+<section id="installation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
+<p>Making <code>brms</code> work in our computer requires some preparation. First, updating R to its latest version will help our libraries work better with each other and with R itself. Installing <code>brms</code> with an older version of R may work, but is likely to cause problems later. When we last checked, R version 4.6.1 was available</p>
+<section id="c-toolchain" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="c-toolchain"><span class="header-section-number">1.2.1</span> C++ toolchain</h3>
+<p><code>brms</code> needs a C++ toolchain to translate R models into a more efficient machinespeak that runs in the background. Setting up this toolchain can take several minutes, but needs to be done only once.</p>
+<p><strong>In Windows</strong>, the C++ toolchain comes with <em>RTools</em> 4.5. To check if this is already installed, go to R and run <code>devtools::find_rtools()</code> (you may need to first run <code>install.packages("devtools")</code>). To install RTools, go to <a href="https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html">this website</a>. Here, download the <em>Rtools45 installer</em> and follow its instructions while keeping all the default choices.</p>
+<p><strong>In macOS</strong>, the C++ toolchain comes with <em>Xcode Command Line Tools</em>. First, go to the Terminal (open <code>Finder &gt; Applications &gt; Terminal</code>) and check if Xcode is already installed with</p>
+<pre><code>xcode-select --version</code></pre>
+<p>If not, install xcode (which may take a while) with</p>
+<pre><code>xcode-select --install</code></pre>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Install toolchain before brms
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R would not complain if we installed <code>brms</code> <em>before</em> preparing the C++ toolchain. But without the toolchain none of our models would run, so it is better to set it up in advance.</p>
+</div>
+</div>
+</section>
+<section id="default-version-of-brms" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="default-version-of-brms"><span class="header-section-number">1.2.2</span> Default version of brms</h3>
+<p>With our C++ toolchain ready, we can return to R and install <code>brms</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">brms.backend =</span> <span class="st">"cmdstanr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"brms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>brms</code> allows us to add or remove parts of a model as needed, so our code is only as complicated as the model we want to fit. Simple code for simple models; fancy code for fancy models.</p>
-<p>Imagine, for example, that we like penguins and we want to study their weight. R has some clean data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> about three types of chilly fellows: Adelie, Chinstrap, and Gentoo.</p>
+<p>Run the commands below to verify that <code>brms</code> works properly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>body_mass_kg <span class="ot">&lt;-</span> penguins<span class="sc">$</span>body_mass <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  count <span class="sc">~</span> zAge <span class="sc">+</span> zBase <span class="sc">*</span> Trt <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> patient),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> epilepsy,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>To start, let us compare the weights of these three groups. The histogram in <a href="#fig-peng-hist" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> suggests that Gentoo penguins tend to be the heaviest, while Adelie and Chinstrap tend to have similar weights.</p>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Visualize penguin weights</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_kg)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"darkorange"</span>) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Gentoo penguins are the heaviest"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Body mass (kilograms)"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="fig-peng-hist" class="quarto-float quarto-figure quarto-figure-center anchored" width="300" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-peng-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="./images/peng-hist.png"><img src="./images/peng-hist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-peng-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Three histograms show penguin weights
-</figcaption>
-</figure>
-</div>
-<p>We can complement this histogram with estimates of the average weight of each group of penguins. A linear regression can give us these estimates along with their confidence intervals. We can fit this (and any other) regression in <code>brms</code> using the function <code>brm()</code> (short for “bayesian regression model”), which for our simple model requires only a formula to describe the regression function and the name of the data set that houses the corresponding variables.</p>
-<p>The code below shows how to fit a linear regression with weight (in kilograms) as the dependent variable and species as the independent categorical variable with values “Adelie”, “Chinstrap”, and “Gentoo”. Run this code and ignore its lengthy output for now.</p>
+<p>The final part of your output should resemble this (the numbers can change slightly):</p>
+<pre><code>Regression Coefficients:
+           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept      1.77      0.12     1.53     2.00 1.00      642     1149
+zAge           0.10      0.09    -0.07     0.27 1.00      690      873
+zBase          0.70      0.12     0.46     0.95 1.00      591     1080
+Trt1          -0.26      0.16    -0.58     0.05 1.00      699     1319
+zBase:Trt1     0.05      0.17    -0.29     0.38 1.00      681     1115</code></pre>
+</section>
+<section id="faster-brms-with-cmdstanr" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="faster-brms-with-cmdstanr"><span class="header-section-number">1.2.3</span> Faster brms with cmdstanr</h3>
+<p>By default, <code>brms</code> interfaces with Stan in the background using <code>rstan</code> <span class="citation" data-cites="rstan_2026">(<a href="references.html#ref-rstan_2026" role="doc-biblioref">Stan Development Team 2026a</a>)</span>, which does not require any additional installation but is somewhat slow. An alternative is to use <code>cmdstanr</code> <span class="citation" data-cites="cmdstanr2025">(<a href="references.html#ref-cmdstanr2025" role="doc-biblioref">Gabry et al. 2025</a>)</span>, which needs to be installed separately but is much faster than <code>rstan</code>. Although tedious, the extra setup is well worth the effort.</p>
+<p>To install <code>cmdstanr</code>, first download the package in R:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_peng1 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> body_mass_kg <span class="sc">~</span> species,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> penguins</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this in a fresh R session or after restarting your current session</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pkgs =</span> <span class="st">"cmdstanr"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://stan-dev.r-universe.dev'</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The first time it sees a model, <code>brm()</code> <em>compiles</em> the code, i.e., it uses the C++ toolchain to translate the code into efficient machinespeak. <code>brm()</code> does not need to recompile unless we change something, so rerunning this same regression will be much faster (try it!). Think of <code>brm()</code> as a virtual chef that can cook many things but has to prepare the kitchen <em>after</em> we tell it what we want.</p>
-<p>Now we can ask the model what it thinks the average weights are. Understanding where these values above come from requires a taste of Bayesian statistics that we will savour soon. For now, though, we can summarize our results as follows, focusing on the table of regression coefficients.</p>
+<p>Verify that the C++ toolchain also works with <code>cmdstanr</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_peng1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>Family: gaussian
-  Links: mu = identity
-Formula: body_mass_kg ~ species
-   Data: penguins (Number of observations: 342)
-  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
-         total post-warmup draws = 4000
-
-Regression Coefficients:
-                 Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept            3.70      0.04     3.63     3.77 1.00     3794     2739
-speciesChinstrap     0.03      0.07    -0.10     0.17 1.00     3977     2723
-speciesGentoo        1.38      0.06     1.27     1.49 1.00     3844     3151
-
-Further Distributional Parameters:
-      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.46      0.02     0.43     0.50 1.00     3943     2698
-
-Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
-and Tail_ESS are effective sample size measures, and Rhat is the potential
-scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
-<p>The <code>Intercept</code> represents the average weight of our Adelie penguins, while <code>speciesChinstrap</code> and <code>speciesGentoo</code> represent the differences of the averages of Chinstrap and Gentoo relative to Adelie. The column <code>Estimate</code> represents a clever guess of the values of the coefficients; <code>Est.Error</code> represents the margin of error of this guess; and <code>l-95% CI</code> and <code>u-95% CI</code> represent the limits of the <em>credibility</em> interval (similar to a <em>confidence</em> interval), a range for the most plausible values of the coefficient.</p>
-<p>Based on these results, we estimate that both Adelie and Chinstrap weight around 3.7 kilograms on average, while Gentoo penguins weight around 5.08 kilograms on average. We also estimate that the standard deviation of the weight of all penguin groups, <code>sigma</code>, is 0.46, which means that most penguins’ weights lie within 0.92 kilograms of their group average.</p>
-<p>The summaries we just saw suffice to understand the elementary aspects of many regression models. But the power and versatility of <code>brms</code> will be easier to wield if we devote a little time to learning the “bayesics” of Bayesian statistics and computation. We just learned how to turn on the oven. A bit more effort and we can learn to control the heat.</p>
+<pre><code>The C++ toolchain required for CmdStan is setup properly!</code></pre>
+<p>Now R can configure <code>cmdstanr</code> for us. This process can take a few minutes. Ignore all the weird messages that will appear; we care only about warnings and errors.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, verify that <code>brms</code> can call <code>cmdstanr</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">brms.backend =</span> <span class="st">'cmdstanr'</span>) <span class="co"># This forces brms to use cmdstanr</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  count <span class="sc">~</span> zAge <span class="sc">+</span> zBase <span class="sc">*</span> Trt <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> patient),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> epilepsy,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A successful model run means a successful installation. <code>brms</code> is ready.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-gridextra_2026" class="csl-entry" role="listitem">
 Auguie, Baptiste. 2026. <em>gridExtra: Miscellaneous Functions for "Grid" Graphics</em>. <a href="https://doi.org/10.32614/CRAN.package.gridExtra">https://doi.org/10.32614/CRAN.package.gridExtra</a>.
+</div>
+<div id="ref-brms2017" class="csl-entry" role="listitem">
+Bürkner, Paul-Christian. 2017. <span>“<span class="nocase">brms</span>: An <span>R</span> Package for <span>Bayesian</span> Multilevel Models Using <span>Stan</span>.”</span> <em>Journal of Statistical Software</em> 80 (1): 1–28. <a href="https://doi.org/10.18637/jss.v080.i01">https://doi.org/10.18637/jss.v080.i01</a>.
+</div>
+<div id="ref-cmdstanr2025" class="csl-entry" role="listitem">
+Gabry, Jonah, Rok Češnovar, Andrew Johnson, and Steve Bronder. 2025. <em>Cmdstanr: R Interface to ’CmdStan’</em>. <a href="https://mc-stan.org/cmdstanr/">https://mc-stan.org/cmdstanr/</a>.
 </div>
 <div id="ref-bayesplot_2025" class="csl-entry" role="listitem">
 Gabry, Jonah, and Tristan Mahr. 2025. <em>Bayesplot: Plotting for Bayesian Models</em>. <a href="https://mc-stan.org/bayesplot/">https://mc-stan.org/bayesplot/</a>.
@@ -499,11 +541,14 @@ Gabry, Jonah, and Tristan Mahr. 2025. <em>Bayesplot: Plotting for Bayesian Model
 <div id="ref-tidybayes2024" class="csl-entry" role="listitem">
 Kay, Matthew. 2024. <em><span class="nocase">tidybayes</span>: Tidy Data and Geoms for <span>Bayesian</span> Models</em>. <a href="https://doi.org/10.5281/zenodo.1308151">https://doi.org/10.5281/zenodo.1308151</a>.
 </div>
-<div id="ref-kaye_2025_palmerpenguins" class="csl-entry" role="listitem">
-Kaye, E., H. Turner, K. B. Gorman, A. Horst, and A. Hill. 2025. <em>Preparing the Palmer Penguins Data for the Datasets Package in r</em>. V. 0.1.0. Zenodo, released. <a href="https://doi.org/10.5281/zenodo.14902740">https://doi.org/10.5281/zenodo.14902740</a>.
-</div>
 <div id="ref-rlang_2026" class="csl-entry" role="listitem">
 R Core Team. 2026. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://doi.org/10.32614/R.manuals">https://doi.org/10.32614/R.manuals</a>.
+</div>
+<div id="ref-rstan_2026" class="csl-entry" role="listitem">
+Stan Development Team. 2026a. <em><span>RStan</span>: The <span>R</span> Interface to <span>Stan</span></em>. <a href="https://mc-stan.org/">https://mc-stan.org/</a>.
+</div>
+<div id="ref-stan_manual_2026" class="csl-entry" role="listitem">
+Stan Development Team. 2026b. <em>Stan Reference Manual, V2.40.0</em>. <a href="https://mc-stan.org">https://mc-stan.org</a>.
 </div>
 <div id="ref-renv_2026" class="csl-entry" role="listitem">
 Ushey, Kevin, and Hadley Wickham. 2026. <em><span class="nocase">renv</span>: Project Environments</em>. <a href="https://doi.org/10.32614/CRAN.package.renv">https://doi.org/10.32614/CRAN.package.renv</a>.
@@ -515,11 +560,7 @@ Wickham, Hadley. 2016. <em><span class="nocase">ggplot2</span>: Elegant Graphics
 Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2026. <em><span class="nocase">dplyr</span>: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
 </div>
 </div>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Find more information on these data by running <code>help(penguins)</code> and referring to <span class="citation" data-cites="kaye_2025_palmerpenguins">Kaye et al. (<a href="references.html#ref-kaye_2025_palmerpenguins" role="doc-biblioref">2025</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -938,13 +979,13 @@ Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaugh
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./getting-started.html" class="pagination-link" aria-label="Introducing `brms`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing <code>brms</code></span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cooking-w-bayes.html" class="pagination-link" aria-label="Intermission: cooking with Bayes">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Intermission: cooking with Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./first-reg-brms.html" class="pagination-link" aria-label="A first regression in brms">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A first regression in brms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
