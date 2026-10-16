@@ -42,25 +42,37 @@ fisher_df <- fisher_df |>
 summary(fisher_df)
 ```
 
-Note that many visitor groups caught zero fishes (see @fig-fish-hist). These
+Note that many visitor groups caught zero fish (see @fig-fish-hist). These
 include zeroes from visitors that did not fish at all and zeroes from visitors
 that did fish but caught nothing.
 
-```{r histogram of fishes caught}
+```{r histogram of fish caught}
 #| code-fold: true
-#| code-summary: Show histogram of fishes caught
+#| code-summary: Show histogram of fish caught
 #| warning: false
 #| fig-align: center
 #| fig-width: 3.6
 #| fig-height: 3
-ggplot(data = fisher_df, mapping = aes(x = num_fish)) +
+fish_hist <- ggplot(data = fisher_df, mapping = aes(x = num_fish)) +
   geom_histogram(binwidth = 2, color = "black", fill = "navyblue") +
   labs(
-    title = "Many groups did not catch any fishes",
+    title = "Many groups did not catch any fish",
     x = "Fish caught",
     y = "Groups of visitors"
   ) +
   theme_bw()
+fish_hist
+```
+
+```{r save fish histogram}
+#| include: false
+#| eval: false
+ggsave(
+  filename = "images/fish-hist1.png",
+  plot = fish_hist,
+  width = 3.6,
+  height = 3
+)
 ```
 
 [![A histogram of fish caught](./images/fish-hist.png){#fig-fish-hist fig-align="center" width=3.6in}](./images/fish-hist.png)
@@ -71,7 +83,7 @@ give them more time to fish. And children dislike sitting in silence for long
 periods, so groups with more children may have fished less. These ideas suggest
 using a model that can associate the average number of caught fish to
 `persons`, `child`, and `camper`. We should also use a model that accounts for
-the fact that the number of fishes caught is a non-negative integer. A Poisson
+the fact that the number of fish caught is a non-negative integer. A Poisson
 regression is a relatively simple model that can fulfil both of these
 requirements[^poisson-fish].
 
@@ -168,19 +180,36 @@ histograms to include in the plot.
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 4
-pp_check(object = fit_fisher1, type = "hist", ndraws = 5, binwidth = 1) +
+fisher1_pred <- pp_check(
+  object = fit_fisher1,
+  type = "hist",
+  ndraws = 5,
+  binwidth = 1
+) +
   coord_cartesian(xlim = c(0, 30)) +
   labs(
     title = "Poisson replicates data poorly",
     x = "Number of fish caught"
   ) +
   theme_minimal()
+fisher1_pred
 ```
 
-[![Model replicates of fishes caught](./images/fisher1-pred.png){#fig-fisher1-pred fig-align="center" width=5in}](./images/fisher1-pred.png)
+```{r save fisher1_pred}
+#| include: false
+#| eval: false
+ggsave(
+  filename = "images/fisher1-pred.png",
+  plot = fisher1_pred
+  width = 5,
+  height = 4
+)
+```
+
+[![Model replicates of fish caught](./images/fisher1-pred.png){#fig-fisher1-pred fig-align="center" width=5in}](./images/fisher1-pred.png)
 
 @fig-fisher1-pred shows that our model is predicting too many visitors with one,
-two, and three fishes and too few visitors with zero fishes. This suggests that,
+two, and three fish and too few visitors with zero fish. This suggests that,
 unfortunately, our current Poisson regression cannot account for these many
 zeroes, and in trying to do so it is distorting our inferences.
 
@@ -209,25 +238,42 @@ fit_fisher_zinf <- brm(
 ```
 
 Let's see if our clever use of zero inflation paid off. First, it seems that
-our zero-inflated Poisson replicates well the overall pattern of fishes caught
+our zero-inflated Poisson replicates well the overall pattern of fish caught
 (see @fig-fisher-zinf-pred).
 
 ```{r check fit of fit_fisher_zinf}
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 4
-pp_check(object = fit_fisher_zinf, type = "hist", ndraws = 5, binwidth = 1) +
+fisher_zinf_pred <- pp_check(
+  object = fit_fisher_zinf,
+  type = "hist",
+  ndraws = 5,
+  binwidth = 1
+) +
   coord_cartesian(xlim = c(0, 30)) +
   labs(
     title = "Zero-inflated Poisson captures the data well",
     x = "Number of fish caught"
   ) +
-    theme_minimal()
+  theme_minimal()
+fisher_zinf_pred
+```
+
+```{r save fisher-zinf-pred}
+#| include: false
+#| eval: false
+fisher_zinf_pred <- ggsave(
+  filename = "images/fisher-zinf-pred.png",
+  plot = fisher_zinf_pred
+  width = 5,
+  height = 4
+)
 ```
 
 [![Zero-inflated Poisson replicates](./images/fisher-zinf-pred.png){#fig-fisher-zinf-pred fig-align="center" width=5in}](./images/fisher-zinf-pred.png)
 
-We can also inspect the proportion of visitors with zero fishes by
+We can also inspect the proportion of visitors with zero fish by
 calling `pp_check()` again. The code is similar to the one above, but we now
 use `type = "stat"` and add a custom function to compute the proportion of
 zeroes in a vector:
@@ -246,7 +292,7 @@ pp_check(
 ) +
   labs(
     title = "Zero-inflated Poisson captures zeroes well",
-    x = "Proportion of visitor groups that caught zero fishes"
+    x = "Proportion of visitor groups that caught zero fish"
   ) +
     coord_cartesian(xlim = c(0.3, 0.8)) +
     theme_minimal() +
@@ -304,7 +350,7 @@ variable is *not* shown in a plot, we are fixing its value at either its
 average (for continuous variables) or its reference category (for categorical
 variables).
 
-We start by visualizing the association between average fishes caught and the
+We start by visualizing the association between average fish caught and the
 number of people in a group:
 
 ```{r persons effect plot}
@@ -347,7 +393,7 @@ person_assoc <- plot(
   labs(
     title = "Larger groups caught\nmore fish",
     x = "People",
-    y = "Average number of fishes caught"
+    y = "Average number of fish caught"
   ) +
 theme_bw()
 # Children
@@ -363,7 +409,7 @@ child_assoc <- plot(
   labs(
     title = "Children caught fewer\nfish",
     x = "Children",
-    y = "Average number of fishes caught"
+    y = "Average number of fish caught"
   ) +
 theme_bw()
 # Camper
@@ -379,13 +425,25 @@ camper_assoc <- plot(
   labs(
     title = "Groups with campers\ncaught more fish",
     x = "Camper",
-    y = "Average number of fishes caught"
+    y = "Average number of fish caught"
   ) +
 theme_bw()
 # Arrange these plots in a single row
-grid.arrange(
+cond_effs <- grid.arrange(
   arrangeGrob(person_assoc, camper_assoc, child_assoc, ncol = 3),
   nrow = 1
+)
+cond_effs
+```
+
+```{r save fish histogram}
+#| include: false
+#| eval: false
+ggsave(
+  filename = "images/cond-effs.png",
+  plot = cond_effs,
+  width = 7,
+  height = 3
 )
 ```
 
